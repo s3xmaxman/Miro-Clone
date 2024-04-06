@@ -31,7 +31,7 @@ export const OrgSidebar = () => {
                         "font-semibold text-2xl",
                         font.className,
                     )}>
-                        Board
+                        BadBoard
                     </span>
                 </div>
             </Link>
@@ -65,7 +65,7 @@ export const OrgSidebar = () => {
                 >
                     <Link href='/'>
                         <LayoutDashboard className="h-4 w-4 mr-2" />
-                        Team Boards
+                        チームボード
                     </Link>
                 </Button>
                 <Button
@@ -81,7 +81,7 @@ export const OrgSidebar = () => {
                         }
                     }}>
                         <Star className="h-4 w-4 mr-2" />
-                        Favorite Boards
+                        お気に入りボード
                     </Link>
                 </Button>
             </div>
