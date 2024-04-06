@@ -14,7 +14,7 @@ export const InviteButton = () => {
       <DialogTrigger asChild>
         <Button variant="outline">
           <Plus className="h-4 w-4 mr-2" />
-          Invite members
+          招待
         </Button>
       </DialogTrigger>
       <DialogContent className="p-0 bg-transparent border-none max-w-[880px]">
