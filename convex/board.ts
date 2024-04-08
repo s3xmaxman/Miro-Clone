@@ -106,6 +106,7 @@ export const update = mutation({
     }
 })
 
+
 //ボードお気に入り
 export const favorite = mutation({
     args: {
@@ -183,4 +184,17 @@ export const unfavorite = mutation({
   
       return board;
     },
-  });
+});
+
+
+//ボード取得
+export const get = query({
+    args: {
+        id: v.id("boards"),
+    },
+    handler: async (ctx, args) => {
+        const board = await ctx.db.get(args.id);
+
+        return board;
+    },
+});
