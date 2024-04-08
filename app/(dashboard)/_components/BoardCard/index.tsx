@@ -1,5 +1,6 @@
 'use client'
 
+import { toast } from "sonner"
 import Image from "next/image"
 import Link from "next/link"
 import { Overlay } from "./overlay"
@@ -9,6 +10,9 @@ import { Footer } from "./footer"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Actions } from "@/components/actions"
 import { MoreHorizontal } from "lucide-react"
+import { useApiMutation } from "@/hooks/use-api-mutation"
+import { api } from "@/convex/_generated/api"
+
 
 
 interface BoardCardProps {
@@ -36,6 +40,20 @@ export const BoardCard = ({
     const { userId } = useAuth()
     const authorLabel = userId === authorId ? "あなた" : authorName
     const createdAtLabel = formatDistanceToNow(new Date(createdAt), { addSuffix: true })
+    const { mutate: onFavorite, pending: pendingFavorite } = useApiMutation(api.board.favorite)
+    const { mutate: onUnfavorite, pending: pendingUnfavorite } = useApiMutation(api.board.unfavorite)
+
+    const toggleFavorite = () => {
+        if (isFavorite) {
+            onUnfavorite({ id })
+            .then(() => toast.success("お気に入りを削除しました"))
+            .catch(() => toast.error("お気に入りの削除に失敗しました"))
+        } else {
+            onFavorite({ id, orgId })
+            .then(() => toast.success("お気に入りを追加しました"))
+            .catch(() => toast.error("お気に入りの追加に失敗しました"))
+        }
+    }
 
     return (
         <Link href={`/board/${id}`}>
@@ -65,8 +83,8 @@ export const BoardCard = ({
                     authorLabel={authorLabel}
                     createdAtLabel={createdAtLabel}
                     isFavorite={isFavorite}
-                    onClick={() => {}}
-                    disabled={false}
+                    onClick={toggleFavorite}
+                    disabled={pendingFavorite || pendingUnfavorite}
                 />
             </div>
         </Link>
