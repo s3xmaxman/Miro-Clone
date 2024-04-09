@@ -2,7 +2,7 @@
 
 interface LayerPreviewProps {
     id: string;
-    onLayerPointerDown: () => void;  // TODO
+    onLayerPointerDown: (e: React.PointerEvent, layerId: string) => void;
     selectionColor?: string;
 }
 
