@@ -33,7 +33,7 @@ export const SelectionTools = memo(({
         
         const indices: number[] = []
 
-        const arr = liveLayersIds.toArray()
+        const arr = liveLayersIds.toImmutable()
 
         // 選択されているレイヤーのインデックスを配列に追加する
         for (let i = 0; i < arr.length; i++) {

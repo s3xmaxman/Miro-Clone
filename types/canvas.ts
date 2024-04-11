@@ -43,7 +43,6 @@ export type PathLayer = {
     y: number;
     height: number;
     width: number;
-    path: string;
     fill: Color;
     points: number[][];
     value?: string;
