@@ -17,7 +17,7 @@ export const get = query({
 
         // ユーザーが認証されていない場合はエラーをスロー
         if (!identity) {
-            throw new Error("Unauthorized");
+            throw new Error("ユーザーが認証されていません");
         }
 
         // お気に入りボードをリクエストしている場合
@@ -91,7 +91,7 @@ export const get = query({
             });
         
         // Promise.all を使用して、すべてのボードのお気に入りフラグを取得
-        const boardsWithFavoriteBoolean = await Promise.all(boardsWithFavoriteRelation);
+        const boardsWithFavoriteBoolean = Promise.all(boardsWithFavoriteRelation);
         
         return boardsWithFavoriteBoolean;
     },
